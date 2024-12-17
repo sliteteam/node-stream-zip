@@ -369,7 +369,7 @@ const StreamZip = function (config) {
                 if (!config.skipEntryNameValidation) {
                     entry.validateName();
                 }
-                if (entries) {
+                if (entries && !(entry.name in entries)) {
                     entries[entry.name] = entry;
                 }
                 that.emit('entry', entry);
