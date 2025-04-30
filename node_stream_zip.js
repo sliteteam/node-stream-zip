@@ -172,6 +172,8 @@ const StreamZip = function (config) {
         if(url){
             const req = selectUrlLib(url).request(url, {method: 'HEAD'}, (res) => {
                 fileSize = parseInt(res.headers['content-length'], 10)
+                res.destroy()
+
                 chunkSize = config.chunkSize || Math.round(fileSize / 1000);
                 chunkSize = Math.max(
                     Math.min(chunkSize, Math.min(128 * 1024, fileSize)),
